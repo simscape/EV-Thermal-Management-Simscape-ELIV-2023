@@ -144,6 +144,9 @@ For any questions regarding the model place a comment in the repository.
 * Lorenzo Nicoletti: Developer
 * Steve Miller: Technical support
 
+The authors would like to thank [Sherpa Engineering](https://www.sherpa-eng.com/en/) for their 
+support and expertise in developing the model and the test scenarios.
+
 ## License
 See [license](LICENSE.md) file attached to this repository
 
@@ -155,5 +158,5 @@ In development
 Steve Miller, Lorenzo Nicoletti
 
 [2] The MathWorks. “Electric Vehicle Thermal Management - MATLAB & Simulink.”, Available 
-[HERE](https://www.mathworks.com/help/hydro/ug/sscfluids_ev_thermal_management.html). 
+[here](https://www.mathworks.com/help/hydro/ug/sscfluids_ev_thermal_management.html). 
  
