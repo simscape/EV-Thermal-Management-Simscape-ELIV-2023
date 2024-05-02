@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Energy Accounting, Driveline</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2023-11-06">
+<meta name="DC.source" content="energyAcct_Driveline.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h1>Energy Accounting, Driveline</h1>
+<!--introduction-->
+<p>This example shows energy accounting in a driveline model.</p>
+<!--/introduction-->
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Model</a>
+</li>
+<li>
+<a href="#2">Test 1: No Wind</a>
+</li>
+<li>
+<a href="#3">Test 2: Headwind</a>
+</li>
+<li>
+<a href="#4">Test 4: Tailwind</a>
+</li>
+<li>
+<a href="#5">Test 4: Low Speed, No Wind</a>
+</li>
+<li>
+<a href="#6">Test 5: Downhill</a>
+</li>
+<li>
+<a href="#7">Test 6: High Inertia Wheels, Low Inertia Chassis</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Model</h2>
+<pre class="codeinput">open_system(<span class="string">'energyAcct_Driveline'</span>)
+set_param(find_system(<span class="string">'energyAcct_Driveline'</span>,<span class="string">'MatchFilter'</span>,@Simulink.match.allVariants,<span class="string">'FindAll'</span>, <span class="string">'on'</span>,<span class="string">'SearchDepth'</span>,1,<span class="string">'type'</span>,<span class="string">'annotation'</span>,<span class="string">'Tag'</span>,<span class="string">'ModelFeatures'</span>),<span class="string">'Interpreter'</span>,<span class="string">'off'</span>)
+</pre>
+<img vspace="5" hspace="5" src="energyAcct_Driveline_01.png" alt=""> <h2 id="2">Test 1: No Wind</h2>
+<pre class="codeinput">energyAcct_Driveline_param
+drvEnAcc.Scenario.wind = 0;
+sim(<span class="string">'energyAcct_Driveline'</span>)
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+</pre>
+<img vspace="5" hspace="5" src="energyAcct_Driveline_02.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_03.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_04.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_05.png" alt=""> <h2 id="3">Test 2: Headwind</h2>
+<pre class="codeinput">drvEnAcc.Scenario.wind = 10;
+sim(<span class="string">'energyAcct_Driveline'</span>)
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+</pre>
+<img vspace="5" hspace="5" src="energyAcct_Driveline_06.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_07.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_08.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_09.png" alt=""> <h2 id="4">Test 4: Tailwind</h2>
+<pre class="codeinput">drvEnAcc.Scenario.wind = -10;
+sim(<span class="string">'energyAcct_Driveline'</span>)
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+</pre>
+<img vspace="5" hspace="5" src="energyAcct_Driveline_10.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_11.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_12.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_13.png" alt=""> <h2 id="5">Test 4: Low Speed, No Wind</h2>
+<pre class="codeinput">drvEnAcc.Scenario.wind = 0;
+drvEnAcc.Scenario.trqscale  = 0.01;
+sim(<span class="string">'energyAcct_Driveline'</span>)
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+</pre>
+<img vspace="5" hspace="5" src="energyAcct_Driveline_14.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_15.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_16.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_17.png" alt=""> <h2 id="6">Test 5: Downhill</h2>
+<pre class="codeinput">energyAcct_Driveline_param
+drvEnAcc.Scenario.incline = -5; <span class="comment">% Deg</span>
+sim(<span class="string">'energyAcct_Driveline'</span>)
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+</pre>
+<img vspace="5" hspace="5" src="energyAcct_Driveline_18.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_19.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_20.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_21.png" alt=""> <h2 id="7">Test 6: High Inertia Wheels, Low Inertia Chassis</h2>
+<pre class="codeinput">energyAcct_Driveline_param
+drvEnAcc.Tire.inertia = 20;
+drvEnAcc.Vehicle.mass = 161;
+drvEnAcc.Scenario.wind = 0;
+sim(<span class="string">'energyAcct_Driveline'</span>)
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+</pre>
+<img vspace="5" hspace="5" src="energyAcct_Driveline_22.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_23.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_24.png" alt=""> <img vspace="5" hspace="5" src="energyAcct_Driveline_25.png" alt=""> <pre class="codeinput">energyAcct_Driveline_param
+close <span class="string">all</span>
+bdclose <span class="string">all</span>
+</pre>
+<p class="footer">Copyright 2021-2023 The MathWorks, Inc.<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Energy Accounting, Driveline
+%
+% This example shows energy accounting in a driveline model.
+%
+% Copyright 2021-2023 The MathWorks, Inc.
+
+%% Model
+
+open_system('energyAcct_Driveline')
+set_param(find_system('energyAcct_Driveline','MatchFilter',@Simulink.match.allVariants,'FindAll', 'on','SearchDepth',1,'type','annotation','Tag','ModelFeatures'),'Interpreter','off')
+
+%% Test 1: No Wind
+energyAcct_Driveline_param
+drvEnAcc.Scenario.wind = 0;
+sim('energyAcct_Driveline')
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+
+%% Test 2: Headwind
+drvEnAcc.Scenario.wind = 10;
+sim('energyAcct_Driveline')
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+
+%% Test 4: Tailwind
+drvEnAcc.Scenario.wind = -10;
+sim('energyAcct_Driveline')
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+
+%% Test 4: Low Speed, No Wind 
+drvEnAcc.Scenario.wind = 0;
+drvEnAcc.Scenario.trqscale  = 0.01;
+sim('energyAcct_Driveline')
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+
+%% Test 5: Downhill
+energyAcct_Driveline_param
+drvEnAcc.Scenario.incline = -5; % Deg
+sim('energyAcct_Driveline')
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+
+
+%% Test 6: High Inertia Wheels, Low Inertia Chassis 
+energyAcct_Driveline_param
+drvEnAcc.Tire.inertia = 20;
+drvEnAcc.Vehicle.mass = 161;
+drvEnAcc.Scenario.wind = 0;
+sim('energyAcct_Driveline')
+energyAcct_Driveline_plot1scenario
+energyAcct_Driveline_calc
+
+%%
+energyAcct_Driveline_param
+close all
+bdclose all
+##### SOURCE END #####
+-->
+</body>
+</html>

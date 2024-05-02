@@ -32,3 +32,11 @@ cd('Overview')
 publish('BEV_Thermal_Management_PassCount.m','showCode',false)
 cd(curr_proj.RootFolder);
 
+% Publish Sensitivity Passenger count
+cd(fileparts(which('energyAcct_ElectroMech.slx')))
+cd('Overview')
+publish('energyAcct_Driveline.m','showCode',true)
+publish('energyAcct_ElectroMech.m','showCode',true)
+cd(curr_proj.RootFolder);
+
+
