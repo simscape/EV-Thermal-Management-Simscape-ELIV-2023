@@ -2,7 +2,7 @@
 % In this test we will gradually increase the cabin setpoint temperature
 % from 22°C to 32°C. The vehicle is simulated with a constant passenger count of 5 
 %-----------------
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 %-----------------
 
 % Open model if necessary

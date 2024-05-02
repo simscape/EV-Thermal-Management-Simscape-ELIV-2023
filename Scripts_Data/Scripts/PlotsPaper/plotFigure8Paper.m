@@ -1,7 +1,7 @@
 %% This script creates the Figure 8 of the paper
 %
 %-----------------
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 %-----------------
 
 %% Create plot

@@ -7,7 +7,7 @@
 %              new simulation with whatever vehicle is parameterized in the
 %              model
 %-----------------
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 %-----------------
 
 %% 1) Check for pre-existing simulation results

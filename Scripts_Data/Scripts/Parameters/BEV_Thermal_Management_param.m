@@ -4,7 +4,7 @@
 % values. Click 'Reinitialize from Source' to reset to the parameter values
 % in this script.
 
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 
 %% Initial conditions:
 cabin_p_init           = 0.101325;   % [MPa] Initial air pressure

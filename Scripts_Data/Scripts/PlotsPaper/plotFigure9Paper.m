@@ -4,7 +4,7 @@
 %              22°C to 32°C while the number of passenger is kept constant to 5
 %              THIS SCRIPT LOADS AND USES SAVED SIMULATION DATA
 %-----------------
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 %-----------------
 
 %% Implementation

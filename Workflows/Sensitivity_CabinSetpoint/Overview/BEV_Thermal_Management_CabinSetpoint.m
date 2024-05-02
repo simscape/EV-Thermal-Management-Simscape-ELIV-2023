@@ -4,7 +4,7 @@
 % management system. It is used to measure the sensitivity of the design to
 % the setpoint of the cabin temperature.
 %
-% Copyright 2021-2023 The MathWorks, Inc.
+% Copyright 2021-2024 The MathWorks, Inc.
 
 %% Model
 

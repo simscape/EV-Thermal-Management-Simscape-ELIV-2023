@@ -3,7 +3,7 @@
 %              plots the speed over time of the simulated cycle as well as 
 %              the total driven distance
 %-----------------
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 %-----------------
 
 plotDriveChargeCycle

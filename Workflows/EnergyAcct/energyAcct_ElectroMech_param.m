@@ -4,7 +4,7 @@
 % values. Click 'Reinitialize from Source' to reset to the parameter values
 % in this script.
 
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 
 %% General Battery Data:
 % Calculate area of the surface in contact with air. This is used for the convective heat transfer

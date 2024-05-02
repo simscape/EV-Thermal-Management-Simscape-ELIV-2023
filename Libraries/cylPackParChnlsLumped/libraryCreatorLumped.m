@@ -3,7 +3,7 @@ function libraryCreatorLumped(Libname)
 % This scripts shows how to create the library for the Simscape Battery
 % model. The same library could also be created using the Simscape Battery Builder App.
 
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 
 
 %% Implementation:

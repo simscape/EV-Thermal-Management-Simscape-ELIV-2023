@@ -2,7 +2,7 @@
 % Code to plot simulation results from energyAcct_Driveline
 %
 
-% Copyright 2023 The MathWorks, Inc.
+% Copyright 2023-2024 The MathWorks, Inc.
 
 
 %% Get simulation results

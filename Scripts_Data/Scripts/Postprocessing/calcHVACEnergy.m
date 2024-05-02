@@ -7,7 +7,7 @@ function out = calcHVACEnergy(slog)
 %-----------------
 % Outputs: out: The results are stored in the out structure
 %-----------------
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 %-----------------
 
 % Get Simulation time 

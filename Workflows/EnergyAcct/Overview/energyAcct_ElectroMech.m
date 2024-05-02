@@ -2,7 +2,7 @@
 %
 % This example shows energy accounting for a motor and battery.
 %
-% Copyright 2021-2023 The MathWorks, Inc.
+% Copyright 2021-2024 The MathWorks, Inc.
 
 %% Model
 % The figure below shows an overview of the model which is composed by a

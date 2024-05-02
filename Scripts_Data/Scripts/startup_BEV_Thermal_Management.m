@@ -2,7 +2,7 @@
 % This is the startup function of the project. Add commands here that you
 % want to be excecuted when the project is open.
 
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 
 % Build custom library if necessary
 prj     = matlab.project.currentProject;

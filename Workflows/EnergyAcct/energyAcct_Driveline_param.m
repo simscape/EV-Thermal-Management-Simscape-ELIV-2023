@@ -1,7 +1,7 @@
 %% Description:
 % Code to define parameters for energyAcct_Driveline.slx
 
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 
 %% Gearbox data
 drvEnAcc.Gearbox.ratio      = 9;            % Transmission ratio, unitless

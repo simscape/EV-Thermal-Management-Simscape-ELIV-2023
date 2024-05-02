@@ -4,7 +4,7 @@ function plotEnergySankey(out)
 %-----------------
 % Inputs:      out: This struct is the output of the function calcVehicleEnergy
 %-----------------
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 %-----------------
 
 %% Implementation

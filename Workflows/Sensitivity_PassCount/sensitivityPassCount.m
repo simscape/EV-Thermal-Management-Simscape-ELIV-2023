@@ -3,7 +3,7 @@
 % to 5. Each time a passenger is added, the mass of the vehicle increases
 % and the heat developed in the cabin increases as well. 
 %-----------------
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2024 The MathWorks, Inc.
 %-----------------
 
 % Open model if necessary

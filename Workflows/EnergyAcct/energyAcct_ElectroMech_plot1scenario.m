@@ -1,5 +1,5 @@
 %% Description: Code to plot simulation results from energyAcct_ElectroMech
-% Copyright 2023 The MathWorks, Inc.
+% Copyright 2023-2024 The MathWorks, Inc.
 
 %% Get simulation results
 simTime     = simlog_energyAcct_ElectroMech.Battery.i.series.time;
